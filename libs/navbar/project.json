@@ -1,0 +1,44 @@
+{
+	"name": "navbar",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/navbar/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nrwl/web:rollup",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/navbar",
+				"tsConfig": "libs/navbar/tsconfig.lib.json",
+				"project": "libs/navbar/package.json",
+				"entryFile": "libs/navbar/src/index.ts",
+				"external": ["react/jsx-runtime"],
+				"rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+				"compiler": "swc",
+				"assets": [
+					{
+						"glob": "libs/navbar/README.md",
+						"input": ".",
+						"output": "."
+					}
+				]
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/navbar/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/navbar"],
+			"options": {
+				"jestConfig": "libs/navbar/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

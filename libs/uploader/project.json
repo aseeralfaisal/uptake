@@ -1,0 +1,44 @@
+{
+	"name": "uploader",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/uploader/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nrwl/web:rollup",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/uploader",
+				"tsConfig": "libs/uploader/tsconfig.lib.json",
+				"project": "libs/uploader/package.json",
+				"entryFile": "libs/uploader/src/index.ts",
+				"external": ["react/jsx-runtime"],
+				"rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+				"compiler": "swc",
+				"assets": [
+					{
+						"glob": "libs/uploader/README.md",
+						"input": ".",
+						"output": "."
+					}
+				]
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/uploader/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/uploader"],
+			"options": {
+				"jestConfig": "libs/uploader/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

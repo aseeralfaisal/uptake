@@ -1,0 +1,44 @@
+{
+	"name": "progress-bar",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/progress-bar/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nrwl/web:rollup",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/progress-bar",
+				"tsConfig": "libs/progress-bar/tsconfig.lib.json",
+				"project": "libs/progress-bar/package.json",
+				"entryFile": "libs/progress-bar/src/index.ts",
+				"external": ["react/jsx-runtime"],
+				"rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+				"compiler": "swc",
+				"assets": [
+					{
+						"glob": "libs/progress-bar/README.md",
+						"input": ".",
+						"output": "."
+					}
+				]
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/progress-bar/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/progress-bar"],
+			"options": {
+				"jestConfig": "libs/progress-bar/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

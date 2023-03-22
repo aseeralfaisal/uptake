@@ -1,0 +1,44 @@
+{
+	"name": "date-range-picker",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/date-range-picker/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nrwl/web:rollup",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/date-range-picker",
+				"tsConfig": "libs/date-range-picker/tsconfig.lib.json",
+				"project": "libs/date-range-picker/package.json",
+				"entryFile": "libs/date-range-picker/src/index.ts",
+				"external": ["react/jsx-runtime"],
+				"rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+				"compiler": "swc",
+				"assets": [
+					{
+						"glob": "libs/date-range-picker/README.md",
+						"input": ".",
+						"output": "."
+					}
+				]
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/date-range-picker/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/date-range-picker"],
+			"options": {
+				"jestConfig": "libs/date-range-picker/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

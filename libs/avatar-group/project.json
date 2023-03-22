@@ -1,0 +1,44 @@
+{
+	"name": "avatar-group",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/avatar-group/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nrwl/web:rollup",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/avatar-group",
+				"tsConfig": "libs/avatar-group/tsconfig.lib.json",
+				"project": "libs/avatar-group/package.json",
+				"entryFile": "libs/avatar-group/src/index.ts",
+				"external": ["react/jsx-runtime"],
+				"rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+				"compiler": "swc",
+				"assets": [
+					{
+						"glob": "libs/avatar-group/README.md",
+						"input": ".",
+						"output": "."
+					}
+				]
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/avatar-group/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/avatar-group"],
+			"options": {
+				"jestConfig": "libs/avatar-group/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

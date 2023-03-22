@@ -1,0 +1,44 @@
+{
+	"name": "progress-steps",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/progress-steps/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nrwl/web:rollup",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/progress-steps",
+				"tsConfig": "libs/progress-steps/tsconfig.lib.json",
+				"project": "libs/progress-steps/package.json",
+				"entryFile": "libs/progress-steps/src/index.ts",
+				"external": ["react/jsx-runtime"],
+				"rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+				"compiler": "swc",
+				"assets": [
+					{
+						"glob": "libs/progress-steps/README.md",
+						"input": ".",
+						"output": "."
+					}
+				]
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/progress-steps/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/progress-steps"],
+			"options": {
+				"jestConfig": "libs/progress-steps/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

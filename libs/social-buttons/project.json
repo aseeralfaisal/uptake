@@ -1,0 +1,44 @@
+{
+	"name": "social-buttons",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/social-buttons/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nrwl/web:rollup",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/social-buttons",
+				"tsConfig": "libs/social-buttons/tsconfig.lib.json",
+				"project": "libs/social-buttons/package.json",
+				"entryFile": "libs/social-buttons/src/index.ts",
+				"external": ["react/jsx-runtime"],
+				"rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+				"compiler": "swc",
+				"assets": [
+					{
+						"glob": "libs/social-buttons/README.md",
+						"input": ".",
+						"output": "."
+					}
+				]
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/social-buttons/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/social-buttons"],
+			"options": {
+				"jestConfig": "libs/social-buttons/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

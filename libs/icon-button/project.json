@@ -1,0 +1,44 @@
+{
+	"name": "icon-button",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/icon-btn/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nrwl/web:rollup",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/icon-btn",
+				"tsConfig": "libs/icon-btn/tsconfig.lib.json",
+				"project": "libs/icon-btn/package.json",
+				"entryFile": "libs/icon-btn/src/index.ts",
+				"external": ["react/jsx-runtime"],
+				"rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+				"compiler": "swc",
+				"assets": [
+					{
+						"glob": "libs/icon-btn/README.md",
+						"input": ".",
+						"output": "."
+					}
+				]
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/icon-btn/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/icon-btn"],
+			"options": {
+				"jestConfig": "libs/icon-btn/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}
